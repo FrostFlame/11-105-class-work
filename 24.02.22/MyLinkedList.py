@@ -6,7 +6,17 @@ class MyAbstractList(ABC):
     def append(self, value):
         pass
 
+    @abstractmethod
+    def insert(self, pos, value):
+        pass
 
+    @abstractmethod
+    def pop(self, pos):
+        pass
+
+    @abstractmethod
+    def size(self):
+        pass
 
 
 class MyNode:
@@ -43,6 +53,33 @@ class MyLinkedList(MyAbstractList):
             elem = elem.get_next()
         elem.set_next(MyNode(value, None))
 
+    def insert(self, pos, value):
+        if pos > self.size():
+            raise IndexError
+        elem = self.head
+        for i in range(pos - 1):
+            elem = elem.get_next()
+        new_elem = MyNode(value, elem.get_next())
+        elem.set_next(new_elem)
+
+    def pop(self, pos):
+        if pos >= self.size():
+            raise IndexError
+        elem = self.head
+        for i in range(pos - 1):
+            elem = elem.get_next()
+        result = elem.get_next().get_value()
+        elem.set_next(elem.get_next().get_next())
+        return result
+
+    def size(self):
+        result = 0
+        elem = self.head
+        while elem is not None:
+            elem = elem.get_next()
+            result += 1
+        return result
+
     def __str__(self):
         result = ''
         elem = self.head
@@ -59,3 +96,18 @@ if __name__ == '__main__':
 
     my_list.append(7)
     print(my_list)
+
+    try:
+        my_list.insert(10, 5)
+        print(my_list)
+    except IndexError as e:
+        print('Неверный индекс')
+
+    try:
+        x = my_list.pop(1)
+        print(x)
+        print(my_list)
+    except IndexError as e:
+        print('Неверный индекс')
+
+    print(my_list.size())
