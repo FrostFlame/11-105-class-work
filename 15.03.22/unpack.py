@@ -15,7 +15,7 @@ x, y, z = {'1', '2', '3'}
 *a, = 1, 2, 3, 'asdsa'
 # print(a)
 
-a, b, *c = 1, 2, 10, 5, 'asd'
+ a, b, *c = 1, 2, 10, 5, 'asd'
 # print(a)
 # print(b)
 # print(c)
