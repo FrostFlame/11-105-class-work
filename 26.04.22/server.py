@@ -17,6 +17,7 @@ conn2.settimeout(5)
 for conn in cycle([conn1, conn2]):
     try:
         msg = conn.recv(1024)
+        conn.send()
         print(msg.decode('utf-8'))
     except Exception as e:
         print(f'{conn} {e}')
