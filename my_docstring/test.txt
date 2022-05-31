@@ -1,0 +1,8 @@
+Test mult_2
+
+>>> from doc_class import Foo
+>>> a = Foo(6)
+>>> a.mul_2()
+13
+>>> a.mul_3()
+14
